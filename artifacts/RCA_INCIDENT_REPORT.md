@@ -5,7 +5,7 @@
 **Incident Severity:** `SEV-2 (High - Automated Degradation Recovery)`  
 **Operational Status:** `RESOLVED (Self-Healed via Exponential Backoff Retries)`  
 **Intelligence Provider:** `HeuristicRuleEngine`  
-**Report Generated UTC:** `2026-10-17T15:20:31.192903+00:00`
+**Report Generated UTC:** `2026-10-17T15:24:10.100920+00:00`
 
 ---
 
@@ -16,36 +16,36 @@ During execution of pipeline 'PaymentAndTelemetryIngestionEngine' (Run ID: run-p
 | Metric | Measured Value | Target SLA / Tolerance |
 | :--- | :--- | :--- |
 | **Overall Pipeline Status** | `DEGRADED_SUCCESS` | `SUCCESS` or `DEGRADED_SUCCESS` |
-| **Total Execution Duration** | `1090.13 ms` | `< 10,000 ms` |
+| **Total Execution Duration** | `1082.91 ms` | `< 10,000 ms` |
 | **Transient Failure Count** | `2` | `<= 3` |
 | **Data Loss / Dropped Records** | `0 (Zero Data Loss)` | `0` |
 | **Host Environment** | `LAPTOP-H22MT0DM` (`Windows 11 (10.0.26300)`) | N/A |
-| **Process ID / Memory** | PID: `21480` / RSS: `34.68 MB` | `< 512 MB` |
+| **Process ID / Memory** | PID: `16432` / RSS: `34.86 MB` | `< 512 MB` |
 
 ## 3. Chronological Event Timeline
 | Timestamp (UTC) | Level | Component / Step | Event Description |
 | :--- | :---: | :--- | :--- |
-| `2026-10-17T15:20:30.075708+00:00` | INFO | *Pipeline Orchestrator* | Pipeline 'PaymentAndTelemetryIngestionEngine' (ID: run-pl-20261017-8821) started execution. |
-| `2026-10-17T15:20:30.075733+00:00` | INFO | `IngestRawTelemetry` | Step 'IngestRawTelemetry' started execution. |
-| `2026-10-17T15:20:30.146507+00:00` | INFO | `IngestRawTelemetry` | Step 'IngestRawTelemetry' completed successfully in 70.73ms. |
-| `2026-10-17T15:20:30.146595+00:00` | INFO | `ValidateAndEnrich` | Step 'ValidateAndEnrich' started execution. |
-| `2026-10-17T15:20:30.190015+00:00` | **RETRY** | `ValidateAndEnrich` | Attempt 1 failed: TransientUpstreamTimeoutError - Upstream Reference Gateway socket timeout (HTTP 503): Connection pool exhausted while fetching FX matrix (Attempt #1). Retrying in 0.28s |
-| `2026-10-17T15:20:30.510729+00:00` | **RETRY** | `ValidateAndEnrich` | Attempt 2 failed: TransientUpstreamTimeoutError - Upstream Reference Gateway socket timeout (HTTP 503): Connection pool exhausted while fetching FX matrix (Attempt #2). Retrying in 0.50s |
-| `2026-10-17T15:20:31.055294+00:00` | **RECOVERY** | `ValidateAndEnrich` | Step 'ValidateAndEnrich' successfully RECOVERED after 3 attempts. Notes: Step recovered on attempt 3/4 after transient TransientUpstreamTimeoutError. |
-| `2026-10-17T15:20:31.055315+00:00` | INFO | `StandardSettlementDispatch` | Step 'StandardSettlementDispatch' SKIPPED. Reason: Branch predicate evaluated to False |
-| `2026-10-17T15:20:31.055519+00:00` | INFO | `QuarantineAndAuditDispatch` | Step 'QuarantineAndAuditDispatch' started execution. |
-| `2026-10-17T15:20:31.114417+00:00` | INFO | `QuarantineAndAuditDispatch` | Step 'QuarantineAndAuditDispatch' completed successfully in 58.80ms. |
-| `2026-10-17T15:20:31.115044+00:00` | INFO | `FinalizeAndArchive` | Step 'FinalizeAndArchive' started execution. |
-| `2026-10-17T15:20:31.165802+00:00` | INFO | `FinalizeAndArchive` | Step 'FinalizeAndArchive' completed successfully in 50.66ms. |
-| `2026-10-17T15:20:31.165851+00:00` | INFO | *Pipeline Orchestrator* | Pipeline finished with status: DEGRADED_SUCCESS (Total Duration: 1090.13ms) |
+| `2026-10-17T15:24:08.990673+00:00` | INFO | *Pipeline Orchestrator* | Pipeline 'PaymentAndTelemetryIngestionEngine' (ID: run-pl-20261017-8821) started execution. |
+| `2026-10-17T15:24:08.990704+00:00` | INFO | `IngestRawTelemetry` | Step 'IngestRawTelemetry' started execution. |
+| `2026-10-17T15:24:09.063327+00:00` | INFO | `IngestRawTelemetry` | Step 'IngestRawTelemetry' completed successfully in 72.54ms. |
+| `2026-10-17T15:24:09.063444+00:00` | INFO | `ValidateAndEnrich` | Step 'ValidateAndEnrich' started execution. |
+| `2026-10-17T15:24:09.105498+00:00` | **RETRY** | `ValidateAndEnrich` | Attempt 1 failed: TransientUpstreamTimeoutError - Upstream Reference Gateway socket timeout (HTTP 503): Connection pool exhausted while fetching FX matrix (Attempt #1). Retrying in 0.26s |
+| `2026-10-17T15:24:09.402809+00:00` | **RETRY** | `ValidateAndEnrich` | Attempt 2 failed: TransientUpstreamTimeoutError - Upstream Reference Gateway socket timeout (HTTP 503): Connection pool exhausted while fetching FX matrix (Attempt #2). Retrying in 0.51s |
+| `2026-10-17T15:24:09.969280+00:00` | **RECOVERY** | `ValidateAndEnrich` | Step 'ValidateAndEnrich' successfully RECOVERED after 3 attempts. Notes: Step recovered on attempt 3/4 after transient TransientUpstreamTimeoutError. |
+| `2026-10-17T15:24:09.969299+00:00` | INFO | `StandardSettlementDispatch` | Step 'StandardSettlementDispatch' SKIPPED. Reason: Branch predicate evaluated to False |
+| `2026-10-17T15:24:09.969529+00:00` | INFO | `QuarantineAndAuditDispatch` | Step 'QuarantineAndAuditDispatch' started execution. |
+| `2026-10-17T15:24:10.027473+00:00` | INFO | `QuarantineAndAuditDispatch` | Step 'QuarantineAndAuditDispatch' completed successfully in 57.89ms. |
+| `2026-10-17T15:24:10.027720+00:00` | INFO | `FinalizeAndArchive` | Step 'FinalizeAndArchive' started execution. |
+| `2026-10-17T15:24:10.073561+00:00` | INFO | `FinalizeAndArchive` | Step 'FinalizeAndArchive' completed successfully in 45.78ms. |
+| `2026-10-17T15:24:10.073595+00:00` | INFO | *Pipeline Orchestrator* | Pipeline finished with status: DEGRADED_SUCCESS (Total Duration: 1082.91ms) |
 
 ## 4. Technical Diagnostics & Failure Mechanism
 ### Upstream Fault Signature
 - **Diagnosed Root Cause:** Transient upstream socket timeout / connection starvation (TransientUpstreamTimeoutError). Diagnostic payload: 'Upstream Reference Gateway socket timeout (HTTP 503): Connection pool exhausted while fetching FX matrix (Attempt #1)'. The upstream service temporarily exhausted its available worker pool under peak concurrency.
 - **Triggering Exception:** `TransientUpstreamTimeoutError`
 - **Error Message:** `Upstream Reference Gateway socket timeout (HTTP 503): Connection pool exhausted while fetching FX matrix (Attempt #1)`
-- **First Failure UTC:** `2026-10-17T15:20:30.189979+00:00`
-- **Initial Backoff Delay:** `0.28 seconds`
+- **First Failure UTC:** `2026-10-17T15:24:09.105473+00:00`
+- **Initial Backoff Delay:** `0.26 seconds`
 
 ```text
 Traceback (most recent call last):
@@ -76,11 +76,11 @@ steps.validate.TransientUpstreamTimeoutError: Upstream Reference Gateway socket 
 ## 7. Pipeline Step Execution Summary
 | Index | Step Name | Dependencies | Status | Attempts | Duration (ms) | Notes |
 | :---: | :--- | :--- | :---: | :---: | :---: | :--- |
-| 1 | `IngestRawTelemetry` | *None (Root)* | `SUCCESS` | 1 | 70.73 | Normal execution |
-| 2 | `ValidateAndEnrich` | IngestRawTelemetry | `RECOVERED` | 3 | 908.62 | Step recovered on attempt 3/4 after transient TransientUpstreamTimeoutError. |
+| 1 | `IngestRawTelemetry` | *None (Root)* | `SUCCESS` | 1 | 72.54 | Normal execution |
+| 2 | `ValidateAndEnrich` | IngestRawTelemetry | `RECOVERED` | 3 | 905.78 | Step recovered on attempt 3/4 after transient TransientUpstreamTimeoutError. |
 | 3 | `StandardSettlementDispatch` | ValidateAndEnrich | `SKIPPED` | 0 | 0.00 | Branch predicate evaluated to False |
-| 4 | `QuarantineAndAuditDispatch` | ValidateAndEnrich | `SUCCESS` | 1 | 58.80 | Normal execution |
-| 5 | `FinalizeAndArchive` | StandardSettlementDispatch, QuarantineAndAuditDispatch | `SUCCESS` | 1 | 50.66 | Normal execution |
+| 4 | `QuarantineAndAuditDispatch` | ValidateAndEnrich | `SUCCESS` | 1 | 57.89 | Normal execution |
+| 5 | `FinalizeAndArchive` | StandardSettlementDispatch, QuarantineAndAuditDispatch | `SUCCESS` | 1 | 45.78 | Normal execution |
 
 ## 8. Corrective and Preventive Actions (CAPA)
 | Priority | Action Item | Owner | Target Date |
