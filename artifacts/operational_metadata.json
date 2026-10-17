@@ -1,0 +1,318 @@
+{
+  "pipeline_id": "run-pl-20261017-8821",
+  "pipeline_name": "PaymentAndTelemetryIngestionEngine",
+  "overall_status": "DEGRADED_SUCCESS",
+  "start_time": "2026-10-17T15:20:30.031482+00:00",
+  "end_time": "2026-10-17T15:20:31.165837+00:00",
+  "total_duration_ms": 1090.13,
+  "host_info": {
+    "hostname": "LAPTOP-H22MT0DM",
+    "os": "Windows 11 (10.0.26300)",
+    "architecture": "AMD64",
+    "python_version": "3.13.5",
+    "process_id": 21480,
+    "cpu_count": 12,
+    "memory": {
+      "rss_mb": 34.68,
+      "peak_rss_mb": 35.55,
+      "pagefile_mb": 21.5
+    }
+  },
+  "recovery_occurred": true,
+  "recovery_details": {
+    "recovered_step": "ValidateAndEnrich",
+    "total_attempts": 3,
+    "mechanism": "Step recovered on attempt 3/4 after transient TransientUpstreamTimeoutError.",
+    "timestamp": "2026-10-17T15:20:31.055269+00:00"
+  },
+  "steps": {
+    "IngestRawTelemetry": {
+      "step_name": "IngestRawTelemetry",
+      "step_index": 1,
+      "dependencies": [],
+      "status": "SUCCESS",
+      "start_time": "2026-10-17T15:20:30.075725+00:00",
+      "end_time": "2026-10-17T15:20:30.146486+00:00",
+      "duration_ms": 70.73,
+      "attempts": 1,
+      "max_retries": 3,
+      "retry_history": [],
+      "inputs_summary": {
+        "db_manager": "<db.database.DatabaseManager object at 0x000002052B3174D0>"
+      },
+      "outputs_summary": {
+        "status": "INGESTED",
+        "batch_id": "BATCH-1792250430",
+        "records_ingested": 60,
+        "sha256": "57a369d02afe...",
+        "source": "sample_transactions.csv"
+      },
+      "recovery_notes": null,
+      "skip_reason": null,
+      "error": null
+    },
+    "ValidateAndEnrich": {
+      "step_name": "ValidateAndEnrich",
+      "step_index": 2,
+      "dependencies": [
+        "IngestRawTelemetry"
+      ],
+      "status": "RECOVERED",
+      "start_time": "2026-10-17T15:20:30.146519+00:00",
+      "end_time": "2026-10-17T15:20:31.055269+00:00",
+      "duration_ms": 908.62,
+      "attempts": 3,
+      "max_retries": 3,
+      "retry_history": [
+        {
+          "attempt_number": 1,
+          "timestamp": "2026-10-17T15:20:30.189979+00:00",
+          "error_type": "TransientUpstreamTimeoutError",
+          "error_message": "Upstream Reference Gateway socket timeout (HTTP 503): Connection pool exhausted while fetching FX matrix (Attempt #1)",
+          "delay_seconds": 0.279,
+          "stack_trace": "Traceback (most recent call last):\n  File \"C:\\Users\\hp\\Desktop\\Bytespoke\\pipeline\\engine.py\", line 213, in execute\n    step_output = step.action(context) or {}\n                  ~~~~~~~~~~~^^^^^^^^^\n  File \"C:\\Users\\hp\\Desktop\\Bytespoke\\steps\\validate.py\", line 47, in validate_and_enrich\n    raise TransientUpstreamTimeoutError(\n    ...<2 lines>...\n    )\nsteps.validate.TransientUpstreamTimeoutError: Upstream Reference Gateway socket timeout (HTTP 503): Connection pool exhausted while fetching FX matrix (Attempt #1)\n"
+        },
+        {
+          "attempt_number": 2,
+          "timestamp": "2026-10-17T15:20:30.510699+00:00",
+          "error_type": "TransientUpstreamTimeoutError",
+          "error_message": "Upstream Reference Gateway socket timeout (HTTP 503): Connection pool exhausted while fetching FX matrix (Attempt #2)",
+          "delay_seconds": 0.497,
+          "stack_trace": "Traceback (most recent call last):\n  File \"C:\\Users\\hp\\Desktop\\Bytespoke\\pipeline\\engine.py\", line 213, in execute\n    step_output = step.action(context) or {}\n                  ~~~~~~~~~~~^^^^^^^^^\n  File \"C:\\Users\\hp\\Desktop\\Bytespoke\\steps\\validate.py\", line 47, in validate_and_enrich\n    raise TransientUpstreamTimeoutError(\n    ...<2 lines>...\n    )\nsteps.validate.TransientUpstreamTimeoutError: Upstream Reference Gateway socket timeout (HTTP 503): Connection pool exhausted while fetching FX matrix (Attempt #2)\n"
+        }
+      ],
+      "inputs_summary": {
+        "db_manager": "<db.database.DatabaseManager object at 0x000002052B3174D0>",
+        "batch_id": "BATCH-1792250430",
+        "raw_records": "[{'txn_id': 'TXN-2026-0001', 'account': 'ACC-1018', 'amount': 9106.38, 'currency': 'EUR', 'risk_flag': False}, {'txn_id': 'TXN-2026-0002', 'account': ...",
+        "payload_checksum": "57a369d02afe43c2539af2ce1300176f343feec8b0808cd4e22dc4aa0c01e822",
+        "status": "INGESTED",
+        "records_ingested": 60,
+        "sha256": "57a369d02afe...",
+        "source": "sample_transactions.csv"
+      },
+      "outputs_summary": {
+        "status": "VALIDATED_AND_ENRICHED",
+        "processed_records": 60,
+        "recovery_achieved_on_attempt": 3,
+        "has_anomalies": true,
+        "high_risk_count": 8
+      },
+      "recovery_notes": "Step recovered on attempt 3/4 after transient TransientUpstreamTimeoutError.",
+      "skip_reason": null,
+      "error": "TransientUpstreamTimeoutError: Upstream Reference Gateway socket timeout (HTTP 503): Connection pool exhausted while fetching FX matrix (Attempt #2)"
+    },
+    "StandardSettlementDispatch": {
+      "step_name": "StandardSettlementDispatch",
+      "step_index": 3,
+      "dependencies": [
+        "ValidateAndEnrich"
+      ],
+      "status": "SKIPPED",
+      "start_time": "2026-10-17T15:20:31.055312+00:00",
+      "end_time": "2026-10-17T15:20:31.055312+00:00",
+      "duration_ms": 0.0,
+      "attempts": 0,
+      "max_retries": 3,
+      "retry_history": [],
+      "inputs_summary": {},
+      "outputs_summary": {},
+      "recovery_notes": null,
+      "skip_reason": "Branch predicate evaluated to False",
+      "error": null
+    },
+    "QuarantineAndAuditDispatch": {
+      "step_name": "QuarantineAndAuditDispatch",
+      "step_index": 4,
+      "dependencies": [
+        "ValidateAndEnrich"
+      ],
+      "status": "SUCCESS",
+      "start_time": "2026-10-17T15:20:31.055320+00:00",
+      "end_time": "2026-10-17T15:20:31.114357+00:00",
+      "duration_ms": 58.8,
+      "attempts": 1,
+      "max_retries": 3,
+      "retry_history": [],
+      "inputs_summary": {
+        "db_manager": "<db.database.DatabaseManager object at 0x000002052B3174D0>",
+        "batch_id": "BATCH-1792250430",
+        "raw_records": "[{'txn_id': 'TXN-2026-0001', 'account': 'ACC-1018', 'amount': 9106.38, 'currency': 'EUR', 'risk_flag': False}, {'txn_id': 'TXN-2026-0002', 'account': ...",
+        "payload_checksum": "57a369d02afe43c2539af2ce1300176f343feec8b0808cd4e22dc4aa0c01e822",
+        "status": "VALIDATED_AND_ENRICHED",
+        "records_ingested": 60,
+        "sha256": "57a369d02afe...",
+        "source": "sample_transactions.csv",
+        "enriched_records": "[{'txn_id': 'TXN-2026-0001', 'account': 'ACC-1018', 'amount': 9106.38, 'currency': 'EUR', 'risk_flag': False, 'fx_rate': 1.08, 'amount_usd': 9834.89, ...",
+        "has_anomalies": true,
+        "processed_records": 60,
+        "recovery_achieved_on_attempt": 3,
+        "high_risk_count": 8
+      },
+      "outputs_summary": {
+        "dispatch_mode": "QUARANTINE_AND_COMPLIANCE_AUDIT",
+        "quarantined_count": 8,
+        "quarantined_txns": "['TXN-2026-0003', 'TXN-2026-0007', 'TXN-2026-0012', 'TXN-2026-0021', 'TXN-2026-0029', 'TXN-2026-0030', 'TXN-2026-0049', 'TXN-2026-0056']",
+        "sanitized_count": 52,
+        "audit_trail_level": "STRICT_COMPLIANCE_FORENSIC",
+        "integrity_checksum_verified": true
+      },
+      "recovery_notes": null,
+      "skip_reason": null,
+      "error": null
+    },
+    "FinalizeAndArchive": {
+      "step_name": "FinalizeAndArchive",
+      "step_index": 5,
+      "dependencies": [
+        "StandardSettlementDispatch",
+        "QuarantineAndAuditDispatch"
+      ],
+      "status": "SUCCESS",
+      "start_time": "2026-10-17T15:20:31.114446+00:00",
+      "end_time": "2026-10-17T15:20:31.165766+00:00",
+      "duration_ms": 50.66,
+      "attempts": 1,
+      "max_retries": 3,
+      "retry_history": [],
+      "inputs_summary": {
+        "db_manager": "<db.database.DatabaseManager object at 0x000002052B3174D0>",
+        "batch_id": "BATCH-1792250430",
+        "raw_records": "[{'txn_id': 'TXN-2026-0001', 'account': 'ACC-1018', 'amount': 9106.38, 'currency': 'EUR', 'risk_flag': False}, {'txn_id': 'TXN-2026-0002', 'account': ...",
+        "payload_checksum": "57a369d02afe43c2539af2ce1300176f343feec8b0808cd4e22dc4aa0c01e822",
+        "status": "VALIDATED_AND_ENRICHED",
+        "records_ingested": 60,
+        "sha256": "57a369d02afe...",
+        "source": "sample_transactions.csv",
+        "enriched_records": "[{'txn_id': 'TXN-2026-0001', 'account': 'ACC-1018', 'amount': 9106.38, 'currency': 'EUR', 'risk_flag': False, 'fx_rate': 1.08, 'amount_usd': 9834.89, ...",
+        "has_anomalies": true,
+        "processed_records": 60,
+        "recovery_achieved_on_attempt": 3,
+        "high_risk_count": 8,
+        "dispatch_result": "{'dispatch_mode': 'QUARANTINE_AND_COMPLIANCE_AUDIT', 'quarantined_count': 8, 'quarantined_txns': ['TXN-2026-0003', 'TXN-2026-0007', 'TXN-2026-0012', '...",
+        "dispatch_mode": "QUARANTINE_AND_COMPLIANCE_AUDIT",
+        "quarantined_count": 8,
+        "quarantined_txns": "['TXN-2026-0003', 'TXN-2026-0007', 'TXN-2026-0012', 'TXN-2026-0021', 'TXN-2026-0029', 'TXN-2026-0030', 'TXN-2026-0049', 'TXN-2026-0056']",
+        "sanitized_count": 52,
+        "audit_trail_level": "STRICT_COMPLIANCE_FORENSIC",
+        "integrity_checksum_verified": true
+      },
+      "outputs_summary": {
+        "status": "FINALIZED_AND_ARCHIVED",
+        "batch_id": "BATCH-1792250430",
+        "archive_seal": "SEAL-d9c3736177543f03",
+        "dispatch_summary": "QUARANTINE_AND_COMPLIANCE_AUDIT",
+        "persisted_records": 60
+      },
+      "recovery_notes": null,
+      "skip_reason": null,
+      "error": null
+    }
+  },
+  "events": [
+    {
+      "timestamp": "2026-10-17T15:20:30.075708+00:00",
+      "level": "INFO",
+      "step_name": null,
+      "message": "Pipeline 'PaymentAndTelemetryIngestionEngine' (ID: run-pl-20261017-8821) started execution.",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-10-17T15:20:30.075733+00:00",
+      "level": "INFO",
+      "step_name": "IngestRawTelemetry",
+      "message": "Step 'IngestRawTelemetry' started execution.",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-10-17T15:20:30.146507+00:00",
+      "level": "INFO",
+      "step_name": "IngestRawTelemetry",
+      "message": "Step 'IngestRawTelemetry' completed successfully in 70.73ms.",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-10-17T15:20:30.146595+00:00",
+      "level": "INFO",
+      "step_name": "ValidateAndEnrich",
+      "message": "Step 'ValidateAndEnrich' started execution.",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-10-17T15:20:30.190015+00:00",
+      "level": "RETRY",
+      "step_name": "ValidateAndEnrich",
+      "message": "Attempt 1 failed: TransientUpstreamTimeoutError - Upstream Reference Gateway socket timeout (HTTP 503): Connection pool exhausted while fetching FX matrix (Attempt #1). Retrying in 0.28s",
+      "details": {
+        "attempt": 1,
+        "error_type": "TransientUpstreamTimeoutError",
+        "delay_seconds": 0.2791391392236491
+      }
+    },
+    {
+      "timestamp": "2026-10-17T15:20:30.510729+00:00",
+      "level": "RETRY",
+      "step_name": "ValidateAndEnrich",
+      "message": "Attempt 2 failed: TransientUpstreamTimeoutError - Upstream Reference Gateway socket timeout (HTTP 503): Connection pool exhausted while fetching FX matrix (Attempt #2). Retrying in 0.50s",
+      "details": {
+        "attempt": 2,
+        "error_type": "TransientUpstreamTimeoutError",
+        "delay_seconds": 0.497151276813624
+      }
+    },
+    {
+      "timestamp": "2026-10-17T15:20:31.055294+00:00",
+      "level": "RECOVERY",
+      "step_name": "ValidateAndEnrich",
+      "message": "Step 'ValidateAndEnrich' successfully RECOVERED after 3 attempts. Notes: Step recovered on attempt 3/4 after transient TransientUpstreamTimeoutError.",
+      "details": {
+        "attempts": 3,
+        "recovery_notes": "Step recovered on attempt 3/4 after transient TransientUpstreamTimeoutError."
+      }
+    },
+    {
+      "timestamp": "2026-10-17T15:20:31.055315+00:00",
+      "level": "INFO",
+      "step_name": "StandardSettlementDispatch",
+      "message": "Step 'StandardSettlementDispatch' SKIPPED. Reason: Branch predicate evaluated to False",
+      "details": {
+        "skip_reason": "Branch predicate evaluated to False"
+      }
+    },
+    {
+      "timestamp": "2026-10-17T15:20:31.055519+00:00",
+      "level": "INFO",
+      "step_name": "QuarantineAndAuditDispatch",
+      "message": "Step 'QuarantineAndAuditDispatch' started execution.",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-10-17T15:20:31.114417+00:00",
+      "level": "INFO",
+      "step_name": "QuarantineAndAuditDispatch",
+      "message": "Step 'QuarantineAndAuditDispatch' completed successfully in 58.80ms.",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-10-17T15:20:31.115044+00:00",
+      "level": "INFO",
+      "step_name": "FinalizeAndArchive",
+      "message": "Step 'FinalizeAndArchive' started execution.",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-10-17T15:20:31.165802+00:00",
+      "level": "INFO",
+      "step_name": "FinalizeAndArchive",
+      "message": "Step 'FinalizeAndArchive' completed successfully in 50.66ms.",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-10-17T15:20:31.165851+00:00",
+      "level": "INFO",
+      "step_name": null,
+      "message": "Pipeline finished with status: DEGRADED_SUCCESS (Total Duration: 1090.13ms)",
+      "details": {}
+    }
+  ]
+}
