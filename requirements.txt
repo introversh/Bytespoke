@@ -1,0 +1,2 @@
+# Minimal production dependencies for clean setup
+rich>=13.0.0

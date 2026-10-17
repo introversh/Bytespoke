@@ -1,0 +1,23 @@
+# Bytecode & Caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Environments & Secrets
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# Local Databases (runtime generated)
+*.db
+*.db-journal
+*.sqlite3
+
+# OS Specific
+.DS_Store
+Thumbs.db
+Desktop.ini
